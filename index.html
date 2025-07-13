@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Digital DKR Gringsing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --hijau-pramuka: #2E7D32;
+            --cokelat-pramuka: #5D4037;
+            --kuning-pramuka: #FFD600;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--white-pramuka));
+            color: black;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.stockcake.com/public/9/0/2/902cbe2e-38ac-424a-8382-358aa85ff48b_large/children-reading-books-stockcake.jpg') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-container {
+            margin: 0 auto;
+            max-width: 300px;
+            padding: 10px 0;
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            object-fit: contain;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            padding: 1rem;
+        }
+        
+        nav a {
+            color: var(--cokelat-pramuka);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+        }
+        
+        nav a:hover {
+            background-color: var(--hijau-pramuka);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .materi-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .materi-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+      .materi-cover {
+            height: 150px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hijau-pramuka);
+            font-size: 3rem;
+        }
+        
+        .materi-info {
+            padding: 1rem;
+        }
+        
+        .materi-info h3 {
+            margin-top: 0;
+            color: var(--cokelat-pramuka);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--hijau-pramuka);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--cokelat-pramuka);
+            transform: translateY(-2px);
+        }
+        
+        .btn-wa {
+            background-color: #25D366;
+        }
+        
+        .jadwal-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .jadwal-item i {
+            font-size: 1.5rem;
+            color: var(--hijau-pramuka);
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--cokelat-pramuka), var(--hijau-pramuka));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--kuning-pramuka);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .materi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="logo-container">
+        <img src="https://i.imgur.com/5ms6g18.png" alt="Logo">
+        </div>
+        <h1>Perpustakaan Digital DKR GRINGSING</h1>
+        <p>Wadah Belajar dan Berbagi Ilmu Anggota Pramuka</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#beranda"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#materi"><i class="fas fa-book"></i> Materi</a></li>
+            <li><a href="#jadwal"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="#kontak"><i class="fas fa-phone-alt"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="beranda" class="card">
+            <h2><i class="fas fa-info-circle"></i> Tentang Kami</h2>
+            <p>Perpustakaan Digital DKR Gringsing merupakan platform penyedia materi kepramukaan dan pengembangan diri untuk anggota Pramuka Kwartir Ranting Gringsing. Kami menyediakan berbagai materi digital yang bisa diakses kapan saja & dimana saja.</p>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="#materi" class="btn"><i class="fas fa-arrow-down"></i> Jelajahi Materi</a>
+            </div>
+        </section>
+
+        <section id="materi" class="card">
+            <h2><i class="fas fa-book"></i> Materi Pramuka</h2>
+            <p>Klik pada materi untuk langsung membuka di Google Drive:</p>
+            
+            <div class="materi-grid">
+                <!-- Materi 1 -->
+               <div class="materi-item" onclick="window.open('https://drive.google.com/drive/folders/1zwMhfhHOv6ItyEMd7e-9d7qVC4quLfxi')">
+                    <div class="materi-cover">
+                      <img src="https://i.imgur.com/Mq2vR2E.png" alt="Logo">
+                        <i class="fas fa-knot"></i>
+                    </div>
+                    <div class="materi-info">
+                      
+                        <h3>Materi Penggalang</h3>
+                        <p>Membahas Materi SKU Penggalang dan Scouting Skill.</p>
+                        <span class="btn"><i class="fas fa-external-link-alt"></i> Buka</span>
+                    </div>
+                </div>
+                
+                <!-- Materi 2 -->
+                <div class="materi-item" onclick="window.open('https://drive.google.com/drive/folders/1-vixvUxxDb9Hc6cfA6OFXNPfclQPIj_D')">
+                    <div class="materi-cover">
+                      <img src="https://i.imgur.com/RqJkxLs.png" alt="Logo">
+                        <i class="fas fa-knot"></i>
+                    </div>
+                    <div class="materi-info">
+                      
+                        <h3>Materi Penegak</h3>
+                        <p>Membahas semua materi tentang penegak kepenagakan dll.</p>
+                        <span class="btn"><i class="fas fa-external-link-alt"></i> Buka</span>
+                    </div>
+                </div>
+        </section>
+
+        <section id="jadwal" class="card">
+            <h2><i class="fas fa-calendar-alt"></i> Jadwal Layanan</h2>
+            
+            <div class="jadwal-item">
+                <i class="fas fa-door-open"></i>
+                <div>
+                    <h3 style="margin: 0;">Open Sanggar</h3>
+                    <p>Senin - Minggu : 07.00 - 21.00 WIB</p>
+                </div>
+            </div>
+            
+            <div class="jadwal-item">
+                <i class="fas fa-headset"></i>
+                <div>
+                    <h3 style="margin: 0;">Konsultasi Online / Offline</h3>
+                    <p>Setiap Hari via WhatsApp atau langsung di Sanggar
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak" class="card">
+            <h2><i class="fas fa-phone-alt"></i> Hubungi Kami</h2>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3><i class="fas fa-map-marker-alt"></i> Alamat</h3>
+                    <p>Sekretariat DKR Gringsing<br>Jl. Raya Kutosari-Batang 51281, Gringsing, Batang</p>
+                </div>
+                
+                <div style="flex: 1; min-width: 250px;">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p>kajiandkrgringsing@gmail.com</p>
+                    
+                    <h3><i class="fas fa-phone"></i> Telepon</h3>
+                    <p>(087782862510)</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://wa.me/qr/NMQEWUQRV7XUI1" class="btn btn-wa"><i class="fab fa-whatsapp"></i> Chat via WhatsApp</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/dkrgringsing?igsh=YjNzODdhajZtZGpm"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@pramukagringsing3126?si=4qIUCp1Xz_E58f3u"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@dkr.gringsing?_t=ZS-8xzwbdarMmW&_r=1"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2025 Perpustakaan Digital DKR Gringsing. All rights reserved.</p>
+        <p>Dibangun dengan <i class="fas fa-heart" style="color: #ff5252;"></i> oleh Tim IT DKR Gringsing</p>
+    </footer>
+
+    <script>
+        // Animasi hover untuk materi
+        document.querySelectorAll('.materi-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-5px)';
+                item.style.boxShadow = '0 6px 12px rgba(0,0,0,0.15)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = '';
+                item.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
